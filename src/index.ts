@@ -1,10 +1,11 @@
+import { createServer } from 'http';
 import app from './app';
-import dotenv from 'dotenv';
+import { config } from './config';
 
-dotenv.config();
+(async () => {
+  const server = createServer(app.callback());
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`Server runnining on the: http://localhost:${PORT}`);
-});
+  server.listen(config.PORT, () => {
+    console.log(`Server runnining on the: http://localhost:${config.PORT}`);
+  });
+})();
